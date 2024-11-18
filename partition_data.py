@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 
 training_csv = 'training_data.csv'
 test_csv = 'test_data.csv'
-validation_cat = 'val_data.csv'
+develeopment_csv = 'dev_data.csv'
 
 # Load the CSV file into a DataFrame
 df = pd.read_csv(training_csv)
@@ -19,4 +19,4 @@ val, test = train_test_split(temp, test_size=0.5, random_state=42)  # 50% of 20%
 # Save the partitions to separate CSV files
 train.to_csv(training_csv, index=False)
 val.to_csv(test_csv, index=False)
-test.to_csv(validation_cat, index=False)
+test.to_csv(develeopment_csv, index=False)
