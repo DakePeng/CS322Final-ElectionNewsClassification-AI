@@ -8,7 +8,7 @@ output_path = "./GPT_Statistics.csv"
 
 actual_column_name = "Type"
 types = ["BOTH", "NONE", "ELECTION", "NONELECTION"]
-output_headers = ["Type, Precision, Recall, F1"]
+output_headers = ["Type", "Precision", "Recall", "F1"]
 
 def get_statistics_one_type(df, type):
     precision = get_precision(df, type)
