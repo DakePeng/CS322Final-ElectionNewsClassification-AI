@@ -2,9 +2,8 @@
 import nltk
 import gensim.downloader as api
 from nltk.corpus import words, stopwords
+from helper_functions.gensim_model import word2vec_model
 
-# uncomment if you don't have the corpus downloaded
-model = api.load('word2vec-google-news-300')
 nltk.download('stopwords')
 
 # Load the English word list and stop word list
@@ -15,4 +14,4 @@ def is_valid_word(word):
     if not word:
         return False
     word_lower = word.lower()
-    return word_lower in model and word_lower not in stop_words
+    return word_lower in word2vec_model and word_lower not in stop_words

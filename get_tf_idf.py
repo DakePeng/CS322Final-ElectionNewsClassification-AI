@@ -59,7 +59,9 @@ def get_tf_idf_weight(tf, idf):
         weight_doc = dd(float)
         tf_doc = tf[i]
         for key in tf_doc:
-            weight_doc[key] = tf_doc[key] * idf[key]
+            if key in idf:
+                # in the test cases there may be new words
+                weight_doc[key] = tf_doc[key] * idf[key]
         weight.append(weight_doc)
     return weight
 

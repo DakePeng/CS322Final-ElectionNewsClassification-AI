@@ -7,7 +7,7 @@ A final project for CS 322: Natural Language Processing, by Dake Peng 25' at Car
 Install the following libraries:
 
 ```bash
-pip install nltk, pandas, csv, openai, tqdm
+pip install nltk, pandas, csv, openai, tqdm, numpy
 ```
 
 If you want to run the GPT model, you would need to acquire an OpenAI API key and set that as a system variable
