@@ -1,9 +1,10 @@
 import sys
 import pandas as pd
 import math
-import json
+
 from collections import defaultdict as dd
 from helper_functions.Corpus import Corpus
+from helper_functions.json_file import save_json
 
 training_data_path = "./data/training_data.csv"
 weight_path = "./data/tf_idf_weights_training.json"
@@ -62,24 +63,11 @@ def get_tf_idf_weight(tf, idf):
         weight.append(weight_doc)
     return weight
 
-def save_weights(weights, output_path):
-    with open(output_path, 'w') as file:
-        json.dump(weights, file, indent = 4)
-        
-def load_weights(path):
-    with open(path, 'r') as file:
-        weights = json.load(file)
-        return weights
-
-def save_idf(idf, output_path):
-    with open(output_path, 'w') as file:
-        json.dump(idf, file, indent = 4)
-    
 if __name__ == "__main__":
     df = pd.read_csv(training_data_path)
     corpus = Corpus(df)
     tf = get_tf(corpus)
     idf = get_idf(corpus)
     weights = get_tf_idf_weight(tf, idf)
-    save_weights(weights, weight_path)
-    save_idf(idf, idf_path)
+    save_json(weights, weight_path)
+    save_json(idf, idf_path)
