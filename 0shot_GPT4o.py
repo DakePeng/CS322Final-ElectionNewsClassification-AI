@@ -4,11 +4,10 @@ from tqdm import tqdm
 
 test_data_path = "./data/test_data.csv"
 
-prompt = """I will provide you a date and a piece of excerpt from a news transcript. Please classify the excerpt. Respond with the There are four types of excerpts:
+prompt = """I will provide you with a date and a piece of excerpt from a news transcript. Please classify the excerpt. There are 3 types of excerpts:
 • NONE: An excerpt is considered NONE if it does not contain a story at all.
 • ELECTION: An excerpt is considered an ELECTION story if it either: 1) mentions an upcoming election; 2) mentions a candidate involved in an upcoming election by name, or 3) focuses on the current duties or actions of an incumbent who is running for re-election or different office — or on issues in the campaign, by explicitly noting that they are election issues.
-• NONELECTION: An excerpt is considered a NON-ELECTION story if it contains a story but the story is not relavant to the election.
-• BOTH: An excerpt is considered BOTH if it both contains an election story and a non-election story.\n"""
+• NONELECTION: An excerpt is considered a NONELECTION story if it contains a story but the story is not relavant to the upcoming election and does not mention upcoming candidates nor the election campaign.\n"""
 
 def format_question(date, text):
     question = prompt + f"DATE: {date}\n" + f"EXCERPT: {text}\n" + "TYPE: "
@@ -43,7 +42,8 @@ def main():
         question = format_question(date, text)
         result = make_query(question, client)
         df.loc[index, 'GP4omini_Prediction'] = result
-    df.to_csv('GPT_Predictions.csv', index=False)
+    df.to_csv('./results/GPT_Predictions.csv', index=False)
 
 if __name__ == "__main__":
     main()
+    # test_query()
