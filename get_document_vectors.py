@@ -12,14 +12,14 @@ document_vectors_path = "./data/document_vectors_training.json"
 
 def get_document_vector(model, words, weights, document_index):
     weighted_vectors = []
-    if not words:
-        return zerovector
     for word in words:
         word_vec = np.array(model[word])
         weights_doc = weights[document_index]
         if word in weights_doc:
             # consider new words in test cases
             weighted_vectors.append(word_vec * weights_doc[word])
+    if len(weighted_vectors) == 0:
+        return zerovector
     weighted_vector = np.mean(weighted_vectors, axis = 0)
     return weighted_vector.tolist()
 

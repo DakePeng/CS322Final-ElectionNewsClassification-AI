@@ -8,7 +8,15 @@ class Corpus():
         corpus, type = get_corpus_and_type(df)
         self.type = type
         self.corpus = clean_corpus(corpus)
-        
+    def remove_none(self):
+        story_indices = [i for i in range(len(self.type))]
+        for i in range(len(self.type)):
+            if self.type[i] == "NONE":
+                story_indices.remove(i)
+        self.type = [self.type[i] for i in story_indices]
+        self.corpus = [self.corpus[i] for i in story_indices]
+        return story_indices
+
 def get_corpus_and_type(df):
     corpus = [None] * len(df)
     type = [None] * len(df)
