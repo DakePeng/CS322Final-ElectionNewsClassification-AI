@@ -11,6 +11,11 @@ test_data_path = "./data/test_data.csv"
 test_document_vectors_path  = "./data/document_vectors_test.json"
 test_weights_path = "./data/tf_idf_weights_test.json"
 
+dev_data_path = "./data/dev_data.csv"
+dev_document_vectors_path  = "./data/document_vectors_dev.json"
+dev_weights_path = "./data/tf_idf_weights_dev.json"
+
+
 def generate_test_document_vectors():
     return 
 
@@ -22,10 +27,14 @@ def generate_test_weights(corpus, idf, output):
         tf.append(tf_doc)
     weights = get_tf_idf_weight(tf, idf)
     save_json(weights, output)
-                
-if __name__ == "__main__":
-    df = pd.read_csv(test_data_path)
-    test_corpus = Corpus(df)
+
+def get_test_dev_vectors(data_path, weights_output_path, document_vectors_output_path):
+    df = pd.read_csv(data_path)
+    corpus = Corpus(df)
     idf = load_json(idf_data_path)
-    generate_test_weights(test_corpus, idf, test_weights_path)
-    get_document_vectors_json(word2vec_model, test_data_path, test_weights_path, test_document_vectors_path)
+    generate_test_weights(corpus, idf, weights_output_path)
+    get_document_vectors_json(word2vec_model, data_path, weights_output_path, document_vectors_output_path)  
+           
+if __name__ == "__main__":
+    get_test_dev_vectors(test_data_path, test_weights_path, test_document_vectors_path)
+    get_test_dev_vectors(dev_data_path, dev_weights_path, dev_document_vectors_path)

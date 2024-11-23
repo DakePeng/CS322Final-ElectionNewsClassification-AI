@@ -4,7 +4,7 @@ import pandas as pd
 from tqdm import tqdm 
 from helper_functions.Corpus import Corpus
 from helper_functions.json_file import load_json, save_json
-from helper_functions.gensim_model import word2vec_model
+from helper_functions.gensim_model import word2vec_model, zerovector
 
 training_data_path = "./data/training_data.csv"
 weights_data_path = "./data/tf_idf_weights_training.json"
@@ -12,6 +12,8 @@ document_vectors_path = "./data/document_vectors_training.json"
 
 def get_document_vector(model, words, weights, document_index):
     weighted_vectors = []
+    if not words:
+        return zerovector
     for word in words:
         word_vec = np.array(model[word])
         weights_doc = weights[document_index]
