@@ -75,7 +75,6 @@ if __name__ == "__main__":
     df = pd.read_csv(training_data_path)
     corpus = Corpus(df)
     
-    t = time.time()
     x1, y1 = get_training_set_story(training_vectors, corpus)
     model_story = LinearSVC(dual=False, C=1, max_iter=1000)
     model_story.fit(x1, y1)
