@@ -4,7 +4,7 @@ from helper_functions.json_file import load_json, save_json
 from helper_functions.Corpus import Corpus
 from helper_functions.gensim_model import word2vec_model
 from get_tf_idf import get_tf_str, get_tf_idf_weight
-from get_document_vectors import get_document_vectors_json
+from get_training_vectors import get_document_vectors_json
 
 idf_data_path = "./data/idf_training.json"
 test_data_path = "./data/test_data.csv"
