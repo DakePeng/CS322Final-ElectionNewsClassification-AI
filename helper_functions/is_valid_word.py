@@ -4,7 +4,9 @@ import gensim.downloader as api
 from nltk.corpus import words, stopwords
 from helper_functions.gensim_model import word2vec_model
 
-nltk.download('stopwords')
+if 'stopwords' not in nltk.data.find('corpora/stopwords'):
+    print("downloading nltk dataset:")
+    nltk.download('stopwords')
 
 # Load the English word list and stop word list
 stop_words = set(stopwords.words('english'))
