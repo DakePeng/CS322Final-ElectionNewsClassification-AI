@@ -1,5 +1,0 @@
-import numpy as np
-x = []
-a = np.array([1,2,3])
-b = np.array([True, True, False])
-print(a*~b)

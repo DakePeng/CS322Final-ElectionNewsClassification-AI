@@ -120,7 +120,7 @@ python3 basic_SVM.py
 python3 get_statistics.py
 ```
 
-The entire process should take about 3 minutes. Each .py program will generate intermediate .json files in ./data, occupying a lot of space, so please make sure to remove them afterwards.
+The entire process should take 5-10 minutes (I tested on a M4 device). Each .py program will generate intermediate .json files in ./data, occupying a lot of space, so please make sure to remove them afterwards.
 
 To run the GPT model, run
 

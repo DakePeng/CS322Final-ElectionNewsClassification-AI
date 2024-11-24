@@ -14,11 +14,9 @@ import numpy as np
 
 class Soft_Margin_Linear_SVM:
     
-    '''references: the code from
+    '''references: tutorials from
     https://www.geeksforgeeks.org/implementing-svm-from-scratch-in-python/
-    is parallellized with the help of chatGPT:
-    https://chatgpt.com/share/674241f0-3308-8009-8822-a21c85231491
-    and then modified to a stochastic approach by myself
+    https://www.youtube.com/watch?v=WdXapAG6TYo
     '''
     def __init__(self, lambda_param = 0.01, learning_rate=0.001, num_iters = 1000):
         # the smaller the lambda, the less tolerant the model is to misclassification
@@ -33,35 +31,31 @@ class Soft_Margin_Linear_SVM:
         # the plane is defined by wx + b = 0
         self.w = np.zeros(num_features)
         self.b = 0
-        # sub_vectors_x = np.array_split(x, len(x) // batch_size)
-        # sub_vectors_y = np.array_split(y, len(y) // batch_size)
         print("Training Model...")
         for i in tqdm(range(self.num_iters)):
-            self.step(x, y, num_samples)
-            # for x_batch, y_batch in zip(sub_vectors_x, sub_vectors_y):
-                # self.step(x_batch, y_batch, batch_size)
+            self.step(x, y)
         
-    def step(self, x, y, batch_size):
-        # gradient descent:
-        margins = y * (np.dot(x, self.w) - self.b)
+    def step(self, x, y):
+        for i in range(len(x)):
+            xi = x[i]
+            yi = y[i]
+            
+            # gradient descent:
+            margin = yi * (np.dot(xi, self.w) - self.b)
         
-        # all margins must be >= 1 if the classification is correct
-        fitted_vectors = margins >= 1
-       
-        # if all fit: use the hard margin rewards
-        delta_w = 2 * self.lambda_param * self.w
-        delta_b = 0
-        
-        # if not all fit:
-        if not np.all(fitted_vectors):
-            misfit_vectors = np.logical_not(fitted_vectors)
-            # for vectors that are misfit (dot product is negative), include penalty
-            delta_w -= np.dot(x.T, y * misfit_vectors) / batch_size
-            delta_b = - np.sum(y * misfit_vectors) / batch_size
-        
-        # update values
-        self.w -= self.learning_rate * delta_w 
-        self.b -= self.learning_rate * delta_b
+            # if fit: use the hard margin rewards
+            delta_w = 2 * self.lambda_param * self.w
+            delta_b = 0
+            
+            # if not fit:
+            if margin < 1:
+                # for vectors that are misfit (dot product is negative), include penalty
+                delta_w -= np.dot(xi, yi)
+                delta_b = yi 
+            
+            # update values
+            self.w -= self.learning_rate * delta_w 
+            self.b -= self.learning_rate * delta_b
 
     def predict(self, x):
         results = np.dot(x, self.w) - self.b
@@ -94,7 +88,7 @@ def predict(df_test, document_vectors_test, model_story, model_election):
     for i in range(len(results_story)):
         if results_story[i] == 1:
             story_indices.append(i)
-    story_vectors = [document_vectors_test[i] for i in story_indices]
+    story_vectors = document_vectors_test[results_story == 1]
     results_election = model_election.predict(story_vectors)
     election_indices = []
     for i in range(len(results_election)):
