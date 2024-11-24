@@ -131,7 +131,7 @@ ChatGPT was used in different pieces of code to lookup api calls and object (lik
 
 It's worth noting that I also tried the SVM library from sklearn and a gradient descent method that, instead of adjusting the weights for each document, takes a step using the entire corpus each training loop. Both performed worse than the current version --- I wonder if the current implementation overfitted the dataset (which is quite homogeneous) that I have.
 
-## Prerequisites (For Windows Machines)
+## Prerequisites
 Install the following libraries:
 
 ```bash
@@ -160,7 +160,7 @@ To run all processes of the SVM model (with training, testing and development se
 python3 get_tf_idf.py
 python3 get_training_vectors.py
 python3 get_test_vectors.py
-python3 basic_SVM.py
+python3 soft_linear_SVM.py
 python3 get_statistics.py
 ```
 

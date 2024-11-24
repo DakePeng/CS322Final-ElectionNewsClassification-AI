@@ -1,4 +1,0 @@
-from soft_linear_SVM import get_document_vectors_from_json, test_vectors_path
-import numpy as np
-document_vectors_test = get_document_vectors_from_json(test_vectors_path)
-print(np.shape(document_vectors_test))
