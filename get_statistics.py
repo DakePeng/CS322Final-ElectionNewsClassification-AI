@@ -49,7 +49,6 @@ def get_class_size(df, type):
     return (df[actual_column_name] == type).sum()
 
 def get_precision(df, type):
-    print(f"{type} {(df[actual_column_name] != type).sum()} {(df[prediction_column_name] == type).sum()}")
     true_pos = ((df[actual_column_name] == type) & (df[prediction_column_name] == type)).sum()
     false_pos = ((df[actual_column_name] != type) & (df[prediction_column_name] == type)).sum()
     return true_pos/(true_pos + false_pos)
