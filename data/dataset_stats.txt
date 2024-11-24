@@ -2,21 +2,18 @@ Training Data Stats:
 Type
 NONE           36242
 NONELECTION    20929
-ELECTION        5638
-BOTH             232
+ELECTION        5870
 Name: count, dtype: int64
 Dev Data Stats: 
 Type
 NONE           4499
 NONELECTION    2646
-ELECTION        709
-BOTH             27
+ELECTION        736
 Name: count, dtype: int64
 Test Data Stats: 
 Type
 NONE           4558
 NONELECTION    2585
-ELECTION        711
-BOTH             26
+ELECTION        737
 Name: count, dtype: int64
 

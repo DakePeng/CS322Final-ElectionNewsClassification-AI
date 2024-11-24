@@ -2,12 +2,13 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
+raw_csv = 'raw_data.csv'
 training_csv = 'training_data.csv'
 test_csv = 'test_data.csv'
 develeopment_csv = 'dev_data.csv'
 
 # Load the CSV file into a DataFrame
-df = pd.read_csv(training_csv)
+df = pd.read_csv(raw_csv)
 
 # Shuffle the data (important for randomness)
 df = df.sample(frac=1, random_state=42).reset_index(drop=True)

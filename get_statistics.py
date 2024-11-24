@@ -1,10 +1,15 @@
 import pandas as pd
 import csv
 
-# adjust these for different output
 predictions_path = "./results/SVM_Predictions.csv"
 prediction_column_name = "SVM_Prediction"
 output_path = "./results/SVM_Statistics.csv"
+
+# use the following rows for GPT results
+# predictions_path = "./results/GPT_Predictions.csv"
+# prediction_column_name = "GPT4omini_Prediction"
+# output_path = "./results/GPT_Statistics.csv"
+
 
 actual_column_name = "Type"
 types = ["NONE", "ELECTION", "NONELECTION"]
