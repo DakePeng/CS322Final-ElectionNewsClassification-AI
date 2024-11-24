@@ -2,9 +2,9 @@ import pandas as pd
 import csv
 
 # adjust these for different output
-predictions_path = "./results/SVM_Predictions.csv"
-prediction_column_name = "SVM_Prediction"
-output_path = "./results/SVM_Statistics.csv"
+predictions_path = "./results/GPT_Predictions.csv"
+prediction_column_name = "GPT4omini_Prediction"
+output_path = "./results/GPT_Statistics.csv"
 
 actual_column_name = "Type"
 types = ["NONE", "ELECTION", "NONELECTION"]
@@ -49,8 +49,7 @@ def get_class_size(df, type):
     return (df[actual_column_name] == type).sum()
 
 def get_precision(df, type):
-    print((df["Type"] == "NONE").sum())
-    print(f"{type} {(df[actual_column_name] == type).sum()} {(df[prediction_column_name] == type).sum()}")
+    print(f"{type} {(df[actual_column_name] != type).sum()} {(df[prediction_column_name] == type).sum()}")
     true_pos = ((df[actual_column_name] == type) & (df[prediction_column_name] == type)).sum()
     false_pos = ((df[actual_column_name] != type) & (df[prediction_column_name] == type)).sum()
     return true_pos/(true_pos + false_pos)
