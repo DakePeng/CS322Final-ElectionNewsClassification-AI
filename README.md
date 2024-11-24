@@ -121,7 +121,7 @@ GPY4o-mini is a model with about 8b parameters. It is also potentially based on 
 
 A minor problem I see, as I mentioned above, is that the model does not always consistently output the 3 categories, even when instructed to do so. This may require another human or programatic process of identifying the output. If I had more time, I would probably use more time to process the annotation data and ensure that each piece is labeled correctly. Moreover, it's also possible to directly train the GPT model by providing it all of the data. That may help resolve some imperfect classification.
 
-I don't think this process revealed any potential problems
+I don't think this process revealed any biases of the model, but I am concerned that the performance of the model might drop when we use a new set of news transcript that is outside of its training corpus. It would be interesting to do a comparison test (given that we also have that data). In addition, it's a tricky engineering problem (both with prompts and with data pipeline) to make the model pick out stories that we care about.
 
 A discussion comparing the results of the two approaches, reflecting on their success at addressing your task or question, and identifying any shortcomings or things you might decide to try with more time. As you consider possible shortcomings, you should consider what potential sources of bias there might be in both approaches, along with what potential impacts such bias might have if employed in a real-world context.
 
