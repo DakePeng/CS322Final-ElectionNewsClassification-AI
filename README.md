@@ -1,5 +1,7 @@
 # CS322Final-ElectionNewsClassification-AI
 
+Update 12/7/2024: to publicize this repository, all data are deleted. Please reach out to the author if you would like a copy of the training data.
+
 A final project for CS 322: Natural Language Processing, Fall 2024, by Dake Peng 25' at Carleton College, Northfield. MN, United States.
 
 ## Introduction
